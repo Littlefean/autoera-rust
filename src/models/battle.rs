@@ -1,4 +1,4 @@
-use crate::tools::cmd::input;
+use crate::tools::cmd::{input, select_choice};
 
 use super::{user::User, Spirit};
 
@@ -35,23 +35,42 @@ impl BattleUserVsOneSpirit {
         loop {
             if let Some(first_spirit) = self.user.get_first_spirit() {
                 // 1 我方选择招数
-                let user_select = input("请选择招数:\n[1] 选择招数 [2] 道具 [3] 逃跑".to_owned());
-                match user_select.trim() {
-                    "1" => {
-                        let user_select = input("请选择招数".to_owned());
+                let choice = select_choice(vec!["选择招数", "道具", "逃跑"]);
+                match choice {
+                    0 => {
+                        let choice = select_choice(vec!["正常攻击"]);
+                        match choice {
+                            0 => {}
+                            _ => (),
+                        }
+                        // 开始比速度
                     }
-                    "2" => {
-                        println!("[1] 补血道具");
-                        println!("[2] 补技能数量道具");
-                        println!("[3] 捕捉道具");
-                        println!("[4] 其他特殊道具");
-                        let user_select = input("请选择道具种类".to_owned());
+                    1 => {
+                        let choice = select_choice(vec![
+                            "补血道具",
+                            "补技能数量道具",
+                            "捕捉道具",
+                            "其他特殊道具",
+                        ]);
+                        match choice {
+                            0 => (),
+                            1 => (),
+                            2 => (),
+                            3 => (),
+                            _ => (),
+                        }
                     }
-                    "3" => {
+                    2 => {
+                        // 暂定逃跑100% 成功
+                        println!("你成功逃跑了");
                         return;
                     }
                     _ => (),
                 }
+                // 2 野生精灵选择招数 暂时默认选择 attack
+                // 3 速度判断。
+                // 如果我方选择的是道具，则我方道具先行
+
                 self.spirit.attack(first_spirit);
 
                 if first_spirit.hp_current <= 0 {
@@ -66,7 +85,6 @@ impl BattleUserVsOneSpirit {
                     break;
                 }
             } else {
-                // 处理背包中没有精灵的情况
                 panic!("出现错误，背包中没有第一个宠物");
             }
         }

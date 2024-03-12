@@ -9,7 +9,7 @@ fn main() {
     progress::welcome::welcome(&user_data);
 
     let user_primary_spirit = progress::primary_choice::progress_choice_primary_spirit();
-    user_data.spirit_beg.push(user_primary_spirit);
+    user_data.spirit_beg.add_spirit(user_primary_spirit);
 
     progress::battle_teach::battle_teach(user_data);
 }
