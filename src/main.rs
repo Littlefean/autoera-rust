@@ -3,7 +3,7 @@ mod progress;
 mod tools;
 
 fn main() {
-    let user_name = tools::cmd::input(String::from("请给你自己起一个游戏名:"));
+    let user_name = tools::cmd::input("请给你自己起一个游戏名:".to_owned());
 
     let mut user_data = models::user::User::player_start_init(user_name);
     progress::welcome::welcome(&user_data);

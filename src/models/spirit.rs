@@ -31,8 +31,7 @@ impl Spirit {
      * 攻击方法
      */
     pub fn attack(&mut self, other_spirit: &mut Spirit) {
-        // let damage_multiplier = species::get_attack_rate(self.species.borrow(), other_spirit.species.borrow());
-        let damage_multiplier: f32 = 1.0;
+        let damage_multiplier = species::get_attack_rate(self.species.borrow(), other_spirit.species.borrow());
         let damage: f32 = damage_multiplier * self.attack_current as f32;
         other_spirit.hp_current -= damage.floor() as i32;
     }
@@ -42,7 +41,7 @@ impl Spirit {
             name: String::from("默认小精灵"),
             hp_current: 100,
             hp_max: 100,
-            attack_current: 10,
+            attack_current: 5,
             speed_current: 1,
             defense_current: 5,
             species: species::SpeciesType::Normal,
@@ -64,7 +63,7 @@ impl Spirit {
         Spirit {
             name: String::from("放克申"),
             hp_current: 80,
-            hp_max: 100,
+            hp_max: 80,
             attack_current: 20,
             speed_current: 2,
             defense_current: 5,
@@ -76,7 +75,7 @@ impl Spirit {
         Spirit {
             name: String::from("奥博杰克特"),
             hp_current: 150,
-            hp_max: 100,
+            hp_max: 150,
             attack_current: 10,
             speed_current: 1,
             defense_current: 10,

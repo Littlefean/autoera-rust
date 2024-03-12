@@ -9,6 +9,7 @@
  * 电系：速度快 攻击力高 血少 防御低
  * 地系：防御力高
  */
+#[derive(Copy, Clone)] // 实现 Copy 和 Clone trait
 pub enum SpeciesType {
     Normal = 0,
     Hydro = 1,
@@ -40,23 +41,22 @@ impl SpeciesType {
  * 0.5 代表 一半伤害
  * 2.0 代表 属性克制，二倍伤害，例如 火系打草系
  */
-pub fn get_attack_rate(attack_species: SpeciesType, defense_species: SpeciesType) -> f32 {
+pub fn get_attack_rate(attack_species: &SpeciesType, defense_species: &SpeciesType) -> f32 {
     // 一个二维数组来表示属性相克表
     let effectiveness_chart: [[f32; 7]; 7] = [
-        //      Normal Hydro  Flare Floral Electra Terra  Sky
-        /*Normal*/
-        [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
-        /*Hydro*/ [1.0, 1.0, 2.0, 0.5, 1.0, 2.0, 1.0],
-        /*Flare*/ [1.0, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0],
-        /*Floral*/ [1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0],
-        /*Electra*/ [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0],
-        /*Terra*/ [1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0],
-        /*Sky*/ [1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0],
+        /*⭐ 💧   🔥   🌿  ⚡   🪨  🪽 */
+        [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], /*⭐*/
+        [1.0, 1.0, 2.0, 0.5, 1.0, 2.0, 1.0], /*💧*/
+        [1.0, 0.5, 1.0, 2.0, 1.0, 1.0, 1.0], /*🔥*/
+        [1.0, 2.0, 0.5, 1.0, 1.0, 1.0, 1.0], /*🌿*/
+        [1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0], /*⚡*/
+        [1.0, 0.5, 1.0, 1.0, 1.0, 1.0, 2.0], /*🪨*/
+        [1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 1.0], /*🪽*/
     ];
 
     // 使用攻击系别和防御系别的值作为索引来获取伤害系数
-    let attack_index = attack_species as usize;
-    let defense_index = defense_species as usize;
+    let attack_index = *attack_species as usize;
+    let defense_index = *defense_species as usize;
 
     effectiveness_chart[attack_index][defense_index]
 }

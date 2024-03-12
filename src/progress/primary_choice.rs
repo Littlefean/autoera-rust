@@ -1,9 +1,7 @@
-use std::io;
-use std::io::Write;
-
 use colored::*;
 
 use crate::models::{self, Spirit};
+use crate::tools::cmd::input;
 
 /// 选主宠的过程
 pub fn progress_choice_primary_spirit() -> Spirit {
@@ -25,21 +23,17 @@ pub fn progress_choice_primary_spirit() -> Spirit {
             models::SpeciesType::Floral.emoji()
         );
 
-        let mut input = String::new();
-
-        print!("请输入选项: ");
-        io::stdout().flush().unwrap();
-        io::stdin().read_line(&mut input).expect("无法读取输入");
+        let input = input("请输入选项: ".to_owned());
 
         match input.trim() {
             "1" => {
                 return Spirit::get_primary_hydro_spirit();
             }
             "2" => {
-                return Spirit::get_primary_hydro_spirit();
+                return Spirit::get_primary_flare_spirit();
             }
             "3" => {
-                return Spirit::get_primary_hydro_spirit();
+                return Spirit::get_primary_floral_spirit();
             }
             _ => {
                 println!("请按照提示输入有效的选项！");
