@@ -1,5 +1,3 @@
-use colored::*;
-
 use crate::models::Spirit;
 use crate::tools::cmd::select_choice;
 

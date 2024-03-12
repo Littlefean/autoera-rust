@@ -1,4 +1,4 @@
-use crate::tools::cmd::{input, select_choice};
+use crate::tools::cmd::select_choice;
 
 use super::{user::User, Spirit};
 
@@ -13,8 +13,8 @@ pub struct BattleUserVsOneSpirit {
 impl BattleUserVsOneSpirit {
     pub fn new(user: User, spirit: Spirit) -> BattleUserVsOneSpirit {
         BattleUserVsOneSpirit {
-            user: user,
-            spirit: spirit,
+            user,
+            spirit,
         }
     }
 

@@ -4,14 +4,14 @@ pub struct User {
     pub user_name: String,
     pub spirit_beg: SpiritBeg,
     pub spirit_beg_max: i32, // 背包目前最多可容纳多少个精灵，后续可以通过购买，换取背包容量
-    money: i32,
+    _money: i32,
 }
 
 impl User {
     /// 用于玩家刚开始新游戏
     pub fn player_start_init(name: String) -> User {
         User {
-            money: 1000,
+            _money: 1000,
             user_name: name,
             spirit_beg: SpiritBeg::new(),
             spirit_beg_max: 2,

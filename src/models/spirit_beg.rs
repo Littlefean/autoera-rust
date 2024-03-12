@@ -15,7 +15,7 @@ impl SpiritBeg {
         }
     }
     /// 获取背包的最大容量
-    pub fn get_max_size(&self) -> usize {
+    pub fn _get_max_size(&self) -> usize {
         return self.max_size;
     }
 

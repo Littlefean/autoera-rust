@@ -29,7 +29,8 @@ pub fn select_choice(select: Vec<&str>) -> usize {
 
     loop {
         // 清空终端并重新打印选项列表
-        // clear_console();
+        clear_console();
+        println!("按↑↓切换选项，Enter选择选项");
         print_options(&select, selected_index);
 
         if let Ok(Event::Key(KeyEvent { code, .. })) = read() {
